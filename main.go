@@ -76,6 +76,7 @@ func main() {
 				"error": "invalid login credentials",
 			})
 		}
+
 		user := new(data.User)
 		has, err := engine.Where("email = ?", req.Email).Get(user)
 		if err != nil {
