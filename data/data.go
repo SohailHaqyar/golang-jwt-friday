@@ -14,7 +14,7 @@ type User struct {
 	Password string `json:"-"`
 }
 
-func CreateDBEngine() (*xorm.Engine, error) {
+func createDBEngine() (*xorm.Engine, error) {
 
 	connectionInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", "localhost", 5432, "root", "password", "db")
 
@@ -31,6 +31,13 @@ func CreateDBEngine() (*xorm.Engine, error) {
 	if err := engine.Sync(new(User)); err != nil {
 		return nil, err
 	}
-
 	return engine, nil
+}
+
+func SetupDatabase() *xorm.Engine {
+	engine, err := createDBEngine()
+	if err != nil {
+		panic(err)
+	}
+	return engine
 }
