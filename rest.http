@@ -1,24 +1,19 @@
-GET http://localhost:3000/public HTTP/1.1
-
-
 ###
-GET http://localhost:3000/private HTTP/1.1
+GET http://localhost:3000/api HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDI3NzYzMTYsInVzZXJfaWQiOjF9.ixic7AM1iIzwPhjxwkVtRYkU7HZ2yYT-ZIBH90bqOr8
 
-
-
 ###
-GET http://localhost:3000/private/users/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDI3NzYzMTYsInVzZXJfaWQiOjF9.ixic7AM1iIzwPhjxwkVtRYkU7HZ2yYT-ZIBH90bqOr8
+GET http://localhost:3000/api/users/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDMwMzE3MDQsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2lkIjoxfQ.kLhioiPY25cLhiwPHrq1orBsrAw6CMe0_LnDNc6v_6w
 
 ###
 POST http://localhost:3000/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "sohail",
-  "email": "sohail@gmail.com",
-  "password": "sohail"
+  "name": "test",
+  "email": "test@gmail.com",
+  "password": "test"
 }
 
 

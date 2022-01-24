@@ -2,15 +2,22 @@ package main
 
 import (
 	"github.com/SohailHaqyar/friday/data"
+	"github.com/SohailHaqyar/friday/user"
 	"github.com/gofiber/fiber/v2"
 	jwtware "github.com/gofiber/jwt/v3"
+	"xorm.io/xorm"
 )
+
+func setupRoutes(app *fiber.App, engine *xorm.Engine) {
+	user.SetupRoutes(app, engine)
+}
 
 func main() {
 	app := fiber.New()
 	engine := data.SetupDatabase()
+	setupRoutes(app, engine)
 
-	private := app.Group("/private")
+	private := app.Group("/api")
 	private.Use(jwtware.New(jwtware.Config{
 		SigningKey: []byte("secret"),
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
@@ -30,12 +37,6 @@ func main() {
 			return err
 		}
 		return c.JSON(users)
-	})
-
-	public := app.Group("/public")
-
-	public.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{"message": "Hello World"})
 	})
 
 	if err := app.Listen(":3000"); err != nil {
